@@ -1,0 +1,28 @@
+# Local Python environment and generated cache files.
+.venv/
+**/__pycache__/
+**/*.pyc
+.pytest_cache/
+.git/
+
+# Local settings, databases, and logs.
+.env
+.env.*
+*.db
+*.db-*
+*.log
+
+# Data, experiments, and exported models supplied separately at runtime.
+CMAPSSData/
+notebooks/
+mlruns/
+output/
+
+# Project files that are not needed to run the API.
+airflow/
+dashboard/
+docs/
+reports/
+tests/
+requirements-phase1.txt
+phase5_review_check.py

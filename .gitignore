@@ -1,0 +1,31 @@
+# Python environment and generated caches
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Local environment settings
+.env
+.env.*
+!.env.example
+
+# Local databases and logs
+*.db
+*.db-*
+*.log
+
+# Generated Airflow logs and configuration
+/airflow/logs/
+/airflow/config/
+
+# Original datasets and MLflow experiment artifacts
+/CMAPSSData/
+mlruns/
+
+# Generated outputs, keeping the model metadata used by the project
+/output/*
+!/output/serving_model/
+/output/serving_model/*
+!/output/serving_model/model_info.json
+!/output/serving_model/final_training_features.json

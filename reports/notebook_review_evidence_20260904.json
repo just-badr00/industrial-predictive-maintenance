@@ -1,0 +1,1364 @@
+{
+  "notebooks": [
+    {
+      "name": "01_dataset_understanding_and_raw_ingestion.ipynb",
+      "sha256": "571e8ab6d1f63cca48e2bff3afa6194f3f1a3338e43624acfddcb3b845b777c8",
+      "cells": 14,
+      "code_cells": 12,
+      "unexecuted_saved_cells": [],
+      "saved_errors": [],
+      "execution": [
+        {
+          "cell": 1,
+          "status": "passed"
+        },
+        {
+          "cell": 2,
+          "status": "passed"
+        },
+        {
+          "cell": 3,
+          "status": "passed"
+        },
+        {
+          "cell": 4,
+          "status": "passed"
+        },
+        {
+          "cell": 5,
+          "status": "passed"
+        },
+        {
+          "cell": 7,
+          "status": "passed"
+        },
+        {
+          "cell": 8,
+          "status": "passed"
+        },
+        {
+          "cell": 9,
+          "status": "passed"
+        },
+        {
+          "cell": 11,
+          "status": "passed"
+        },
+        {
+          "cell": 12,
+          "status": "passed"
+        },
+        {
+          "cell": 13,
+          "status": "passed"
+        },
+        {
+          "cell": 14,
+          "status": "passed"
+        }
+      ],
+      "warnings": [],
+      "seconds": 0.15
+    },
+    {
+      "name": "02_raw_to_silver_layer.ipynb",
+      "sha256": "039090972075df45eda8b80e5ec7bcf18cddd24a8965b60de0658257d16f18a2",
+      "cells": 28,
+      "code_cells": 26,
+      "unexecuted_saved_cells": [
+        16,
+        19,
+        20
+      ],
+      "saved_errors": [],
+      "execution": [
+        {
+          "cell": 1,
+          "status": "passed"
+        },
+        {
+          "cell": 2,
+          "status": "passed"
+        },
+        {
+          "cell": 3,
+          "status": "passed"
+        },
+        {
+          "cell": 4,
+          "status": "passed"
+        },
+        {
+          "cell": 5,
+          "status": "passed"
+        },
+        {
+          "cell": 7,
+          "status": "passed"
+        },
+        {
+          "cell": 8,
+          "status": "passed"
+        },
+        {
+          "cell": 9,
+          "status": "passed"
+        },
+        {
+          "cell": 10,
+          "status": "passed"
+        },
+        {
+          "cell": 11,
+          "status": "passed"
+        },
+        {
+          "cell": 12,
+          "status": "passed"
+        },
+        {
+          "cell": 13,
+          "status": "passed"
+        },
+        {
+          "cell": 14,
+          "status": "passed"
+        },
+        {
+          "cell": 15,
+          "status": "passed"
+        },
+        {
+          "cell": 16,
+          "status": "passed"
+        },
+        {
+          "cell": 17,
+          "status": "passed"
+        },
+        {
+          "cell": 18,
+          "status": "passed"
+        },
+        {
+          "cell": 19,
+          "status": "passed"
+        },
+        {
+          "cell": 20,
+          "status": "passed"
+        },
+        {
+          "cell": 21,
+          "status": "passed"
+        },
+        {
+          "cell": 22,
+          "status": "passed"
+        },
+        {
+          "cell": 23,
+          "status": "passed"
+        },
+        {
+          "cell": 24,
+          "status": "passed"
+        },
+        {
+          "cell": 25,
+          "status": "passed"
+        },
+        {
+          "cell": 26,
+          "status": "passed"
+        },
+        {
+          "cell": 28,
+          "status": "passed"
+        }
+      ],
+      "warnings": [],
+      "seconds": 0.15
+    },
+    {
+      "name": "03_silver_to_gold_layer.ipynb",
+      "sha256": "2846dadb4b90ffab3a53ef8b8cee75a417535e475fa08015d61ab4471c24958a",
+      "cells": 12,
+      "code_cells": 11,
+      "unexecuted_saved_cells": [
+        11
+      ],
+      "saved_errors": [],
+      "execution": [
+        {
+          "cell": 1,
+          "status": "passed"
+        },
+        {
+          "cell": 2,
+          "status": "passed"
+        },
+        {
+          "cell": 3,
+          "status": "passed"
+        },
+        {
+          "cell": 4,
+          "status": "passed"
+        },
+        {
+          "cell": 5,
+          "status": "passed"
+        },
+        {
+          "cell": 6,
+          "status": "passed"
+        },
+        {
+          "cell": 7,
+          "status": "passed"
+        },
+        {
+          "cell": 8,
+          "status": "passed"
+        },
+        {
+          "cell": 9,
+          "status": "passed"
+        },
+        {
+          "cell": 10,
+          "status": "passed"
+        },
+        {
+          "cell": 11,
+          "status": "passed"
+        }
+      ],
+      "warnings": [],
+      "seconds": 0.07
+    },
+    {
+      "name": "04_eda_and_sensor_analysis.ipynb",
+      "sha256": "f3c74b27584926310a376b9b4f89fb4d4cfb8a7211268de31a3b09975121861d",
+      "cells": 70,
+      "code_cells": 66,
+      "unexecuted_saved_cells": [
+        40,
+        46,
+        55
+      ],
+      "saved_errors": [],
+      "execution": [
+        {
+          "cell": 1,
+          "status": "passed"
+        },
+        {
+          "cell": 2,
+          "status": "passed"
+        },
+        {
+          "cell": 3,
+          "status": "passed"
+        },
+        {
+          "cell": 4,
+          "status": "passed"
+        },
+        {
+          "cell": 5,
+          "status": "passed"
+        },
+        {
+          "cell": 6,
+          "status": "passed"
+        },
+        {
+          "cell": 7,
+          "status": "passed"
+        },
+        {
+          "cell": 8,
+          "status": "passed"
+        },
+        {
+          "cell": 9,
+          "status": "passed"
+        },
+        {
+          "cell": 10,
+          "status": "passed"
+        },
+        {
+          "cell": 11,
+          "status": "passed"
+        },
+        {
+          "cell": 12,
+          "status": "passed"
+        },
+        {
+          "cell": 13,
+          "status": "passed"
+        },
+        {
+          "cell": 14,
+          "status": "passed"
+        },
+        {
+          "cell": 15,
+          "status": "passed"
+        },
+        {
+          "cell": 16,
+          "status": "passed"
+        },
+        {
+          "cell": 17,
+          "status": "passed"
+        },
+        {
+          "cell": 18,
+          "status": "passed"
+        },
+        {
+          "cell": 19,
+          "status": "passed"
+        },
+        {
+          "cell": 20,
+          "status": "passed"
+        },
+        {
+          "cell": 21,
+          "status": "passed"
+        },
+        {
+          "cell": 22,
+          "status": "passed"
+        },
+        {
+          "cell": 23,
+          "status": "passed"
+        },
+        {
+          "cell": 24,
+          "status": "passed"
+        },
+        {
+          "cell": 25,
+          "status": "passed"
+        },
+        {
+          "cell": 26,
+          "status": "passed"
+        },
+        {
+          "cell": 27,
+          "status": "passed"
+        },
+        {
+          "cell": 28,
+          "status": "passed"
+        },
+        {
+          "cell": 29,
+          "status": "passed"
+        },
+        {
+          "cell": 31,
+          "status": "passed"
+        },
+        {
+          "cell": 32,
+          "status": "passed"
+        },
+        {
+          "cell": 33,
+          "status": "passed"
+        },
+        {
+          "cell": 34,
+          "status": "passed"
+        },
+        {
+          "cell": 35,
+          "status": "passed"
+        },
+        {
+          "cell": 36,
+          "status": "passed"
+        },
+        {
+          "cell": 37,
+          "status": "passed"
+        },
+        {
+          "cell": 38,
+          "status": "passed"
+        },
+        {
+          "cell": 39,
+          "status": "passed"
+        },
+        {
+          "cell": 40,
+          "status": "passed"
+        },
+        {
+          "cell": 41,
+          "status": "passed"
+        },
+        {
+          "cell": 42,
+          "status": "passed"
+        },
+        {
+          "cell": 43,
+          "status": "passed"
+        },
+        {
+          "cell": 44,
+          "status": "passed"
+        },
+        {
+          "cell": 45,
+          "status": "passed"
+        },
+        {
+          "cell": 46,
+          "status": "passed"
+        },
+        {
+          "cell": 47,
+          "status": "passed"
+        },
+        {
+          "cell": 48,
+          "status": "passed"
+        },
+        {
+          "cell": 49,
+          "status": "passed"
+        },
+        {
+          "cell": 50,
+          "status": "passed"
+        },
+        {
+          "cell": 51,
+          "status": "passed"
+        },
+        {
+          "cell": 52,
+          "status": "passed"
+        },
+        {
+          "cell": 53,
+          "status": "passed"
+        },
+        {
+          "cell": 54,
+          "status": "passed"
+        },
+        {
+          "cell": 55,
+          "status": "passed"
+        },
+        {
+          "cell": 56,
+          "status": "passed"
+        },
+        {
+          "cell": 57,
+          "status": "passed"
+        },
+        {
+          "cell": 58,
+          "status": "passed"
+        },
+        {
+          "cell": 59,
+          "status": "passed"
+        },
+        {
+          "cell": 60,
+          "status": "passed"
+        },
+        {
+          "cell": 61,
+          "status": "passed"
+        },
+        {
+          "cell": 62,
+          "status": "passed"
+        },
+        {
+          "cell": 63,
+          "status": "passed"
+        },
+        {
+          "cell": 64,
+          "status": "passed"
+        },
+        {
+          "cell": 65,
+          "status": "passed"
+        },
+        {
+          "cell": 66,
+          "status": "passed"
+        },
+        {
+          "cell": 67,
+          "status": "passed"
+        }
+      ],
+      "warnings": [
+        "The set_bad function will be deprecated in a future version. Use cmap.with_extremes(bad=...) or Colormap(bad=...) instead."
+      ],
+      "seconds": 2.78
+    },
+    {
+      "name": "05_Feature engineering.ipynb",
+      "sha256": "e98d3f587b4a79bfbf6c806ba2bf109dd37ef36da6491ba797fea24badedc7c5",
+      "cells": 28,
+      "code_cells": 28,
+      "unexecuted_saved_cells": [
+        7,
+        11,
+        15,
+        19,
+        20,
+        24,
+        26
+      ],
+      "saved_errors": [],
+      "execution": [
+        {
+          "cell": 1,
+          "status": "passed"
+        },
+        {
+          "cell": 2,
+          "status": "passed"
+        },
+        {
+          "cell": 3,
+          "status": "passed"
+        },
+        {
+          "cell": 4,
+          "status": "passed"
+        },
+        {
+          "cell": 5,
+          "status": "passed"
+        },
+        {
+          "cell": 6,
+          "status": "passed"
+        },
+        {
+          "cell": 7,
+          "status": "passed"
+        },
+        {
+          "cell": 8,
+          "status": "passed"
+        },
+        {
+          "cell": 9,
+          "status": "passed"
+        },
+        {
+          "cell": 10,
+          "status": "passed"
+        },
+        {
+          "cell": 11,
+          "status": "passed"
+        },
+        {
+          "cell": 12,
+          "status": "passed"
+        },
+        {
+          "cell": 13,
+          "status": "passed"
+        },
+        {
+          "cell": 14,
+          "status": "passed"
+        },
+        {
+          "cell": 15,
+          "status": "passed"
+        },
+        {
+          "cell": 16,
+          "status": "passed"
+        },
+        {
+          "cell": 17,
+          "status": "passed"
+        },
+        {
+          "cell": 18,
+          "status": "passed"
+        },
+        {
+          "cell": 19,
+          "status": "passed"
+        },
+        {
+          "cell": 20,
+          "status": "passed"
+        },
+        {
+          "cell": 21,
+          "status": "passed"
+        },
+        {
+          "cell": 22,
+          "status": "passed"
+        },
+        {
+          "cell": 23,
+          "status": "passed"
+        },
+        {
+          "cell": 24,
+          "status": "passed"
+        },
+        {
+          "cell": 25,
+          "status": "passed"
+        },
+        {
+          "cell": 26,
+          "status": "passed"
+        },
+        {
+          "cell": 27,
+          "status": "passed"
+        },
+        {
+          "cell": 28,
+          "status": "passed"
+        }
+      ],
+      "warnings": [],
+      "seconds": 9.77
+    },
+    {
+      "name": "05_Feature engineering_Final.ipynb",
+      "sha256": "194faf027709566b43f10ade70b13c9a4b8d95f637124928314b1e241f68efa7",
+      "cells": 10,
+      "code_cells": 10,
+      "unexecuted_saved_cells": [],
+      "saved_errors": [],
+      "execution": [
+        {
+          "cell": 1,
+          "status": "passed"
+        },
+        {
+          "cell": 2,
+          "status": "passed"
+        },
+        {
+          "cell": 3,
+          "status": "passed"
+        },
+        {
+          "cell": 4,
+          "status": "passed"
+        },
+        {
+          "cell": 5,
+          "status": "passed"
+        },
+        {
+          "cell": 6,
+          "status": "passed"
+        },
+        {
+          "cell": 7,
+          "status": "passed"
+        },
+        {
+          "cell": 8,
+          "status": "passed"
+        },
+        {
+          "cell": 9,
+          "status": "passed"
+        },
+        {
+          "cell": 10,
+          "status": "passed"
+        }
+      ],
+      "warnings": [],
+      "seconds": 17.96
+    }
+  ],
+  "checks": {
+    "source_train": {
+      "shape": [
+        20631,
+        26
+      ],
+      "engines": 100,
+      "nulls": 0,
+      "infinities": 0
+    },
+    "source_test": {
+      "shape": [
+        13096,
+        26
+      ],
+      "engines": 100,
+      "nulls": 0,
+      "infinities": 0
+    },
+    "source_rul": {
+      "shape": [
+        100,
+        2
+      ],
+      "engines": 100,
+      "nulls": 0,
+      "infinities": 0
+    },
+    "features_train": {
+      "shape": [
+        20631,
+        195
+      ],
+      "engines": 100,
+      "duplicate_keys": 0,
+      "unique_columns": true,
+      "complete_window_rows": 18731,
+      "rows_with_null": 1900,
+      "complete_window_nulls": 0,
+      "infinities": 0,
+      "null_counts": {
+        "sensor_measurement_1_mean_20": 1900,
+        "sensor_measurement_2_mean_20": 1900,
+        "sensor_measurement_3_mean_20": 1900,
+        "sensor_measurement_4_mean_20": 1900,
+        "sensor_measurement_5_mean_20": 1900,
+        "sensor_measurement_6_mean_20": 1900,
+        "sensor_measurement_7_mean_20": 1900,
+        "sensor_measurement_8_mean_20": 1900,
+        "sensor_measurement_9_mean_20": 1900,
+        "sensor_measurement_10_mean_20": 1900,
+        "sensor_measurement_11_mean_20": 1900,
+        "sensor_measurement_12_mean_20": 1900,
+        "sensor_measurement_13_mean_20": 1900,
+        "sensor_measurement_14_mean_20": 1900,
+        "sensor_measurement_15_mean_20": 1900,
+        "sensor_measurement_16_mean_20": 1900,
+        "sensor_measurement_17_mean_20": 1900,
+        "sensor_measurement_18_mean_20": 1900,
+        "sensor_measurement_19_mean_20": 1900,
+        "sensor_measurement_20_mean_20": 1900,
+        "sensor_measurement_21_mean_20": 1900,
+        "sensor_measurement_1_std_20": 1900,
+        "sensor_measurement_2_std_20": 1900,
+        "sensor_measurement_3_std_20": 1900,
+        "sensor_measurement_4_std_20": 1900,
+        "sensor_measurement_5_std_20": 1900,
+        "sensor_measurement_6_std_20": 1900,
+        "sensor_measurement_7_std_20": 1900,
+        "sensor_measurement_8_std_20": 1900,
+        "sensor_measurement_9_std_20": 1900,
+        "sensor_measurement_10_std_20": 1900,
+        "sensor_measurement_11_std_20": 1900,
+        "sensor_measurement_12_std_20": 1900,
+        "sensor_measurement_13_std_20": 1900,
+        "sensor_measurement_14_std_20": 1900,
+        "sensor_measurement_15_std_20": 1900,
+        "sensor_measurement_16_std_20": 1900,
+        "sensor_measurement_17_std_20": 1900,
+        "sensor_measurement_18_std_20": 1900,
+        "sensor_measurement_19_std_20": 1900,
+        "sensor_measurement_20_std_20": 1900,
+        "sensor_measurement_21_std_20": 1900,
+        "sensor_measurement_1_min_20": 1900,
+        "sensor_measurement_2_min_20": 1900,
+        "sensor_measurement_3_min_20": 1900,
+        "sensor_measurement_4_min_20": 1900,
+        "sensor_measurement_5_min_20": 1900,
+        "sensor_measurement_6_min_20": 1900,
+        "sensor_measurement_7_min_20": 1900,
+        "sensor_measurement_8_min_20": 1900,
+        "sensor_measurement_9_min_20": 1900,
+        "sensor_measurement_10_min_20": 1900,
+        "sensor_measurement_11_min_20": 1900,
+        "sensor_measurement_12_min_20": 1900,
+        "sensor_measurement_13_min_20": 1900,
+        "sensor_measurement_14_min_20": 1900,
+        "sensor_measurement_15_min_20": 1900,
+        "sensor_measurement_16_min_20": 1900,
+        "sensor_measurement_17_min_20": 1900,
+        "sensor_measurement_18_min_20": 1900,
+        "sensor_measurement_19_min_20": 1900,
+        "sensor_measurement_20_min_20": 1900,
+        "sensor_measurement_21_min_20": 1900,
+        "sensor_measurement_1_max_20": 1900,
+        "sensor_measurement_2_max_20": 1900,
+        "sensor_measurement_3_max_20": 1900,
+        "sensor_measurement_4_max_20": 1900,
+        "sensor_measurement_5_max_20": 1900,
+        "sensor_measurement_6_max_20": 1900,
+        "sensor_measurement_7_max_20": 1900,
+        "sensor_measurement_8_max_20": 1900,
+        "sensor_measurement_9_max_20": 1900,
+        "sensor_measurement_10_max_20": 1900,
+        "sensor_measurement_11_max_20": 1900,
+        "sensor_measurement_12_max_20": 1900,
+        "sensor_measurement_13_max_20": 1900,
+        "sensor_measurement_14_max_20": 1900,
+        "sensor_measurement_15_max_20": 1900,
+        "sensor_measurement_16_max_20": 1900,
+        "sensor_measurement_17_max_20": 1900,
+        "sensor_measurement_18_max_20": 1900,
+        "sensor_measurement_19_max_20": 1900,
+        "sensor_measurement_20_max_20": 1900,
+        "sensor_measurement_21_max_20": 1900,
+        "sensor_measurement_1_difference": 100,
+        "sensor_measurement_2_difference": 100,
+        "sensor_measurement_3_difference": 100,
+        "sensor_measurement_4_difference": 100,
+        "sensor_measurement_5_difference": 100,
+        "sensor_measurement_6_difference": 100,
+        "sensor_measurement_7_difference": 100,
+        "sensor_measurement_8_difference": 100,
+        "sensor_measurement_9_difference": 100,
+        "sensor_measurement_10_difference": 100,
+        "sensor_measurement_11_difference": 100,
+        "sensor_measurement_12_difference": 100,
+        "sensor_measurement_13_difference": 100,
+        "sensor_measurement_14_difference": 100,
+        "sensor_measurement_15_difference": 100,
+        "sensor_measurement_16_difference": 100,
+        "sensor_measurement_17_difference": 100,
+        "sensor_measurement_18_difference": 100,
+        "sensor_measurement_19_difference": 100,
+        "sensor_measurement_20_difference": 100,
+        "sensor_measurement_21_difference": 100,
+        "sensor_measurement_1_%change": 100,
+        "sensor_measurement_2_%change": 100,
+        "sensor_measurement_3_%change": 100,
+        "sensor_measurement_4_%change": 100,
+        "sensor_measurement_5_%change": 100,
+        "sensor_measurement_6_%change": 100,
+        "sensor_measurement_7_%change": 100,
+        "sensor_measurement_8_%change": 100,
+        "sensor_measurement_9_%change": 100,
+        "sensor_measurement_10_%change": 100,
+        "sensor_measurement_11_%change": 100,
+        "sensor_measurement_12_%change": 100,
+        "sensor_measurement_13_%change": 100,
+        "sensor_measurement_14_%change": 100,
+        "sensor_measurement_15_%change": 100,
+        "sensor_measurement_16_%change": 100,
+        "sensor_measurement_17_%change": 100,
+        "sensor_measurement_18_%change": 100,
+        "sensor_measurement_19_%change": 100,
+        "sensor_measurement_20_%change": 100,
+        "sensor_measurement_21_%change": 100,
+        "sensor_measurement_1_sensor_slope_20": 1900,
+        "sensor_measurement_2_sensor_slope_20": 1900,
+        "sensor_measurement_3_sensor_slope_20": 1900,
+        "sensor_measurement_4_sensor_slope_20": 1900,
+        "sensor_measurement_5_sensor_slope_20": 1900,
+        "sensor_measurement_6_sensor_slope_20": 1900,
+        "sensor_measurement_7_sensor_slope_20": 1900,
+        "sensor_measurement_8_sensor_slope_20": 1900,
+        "sensor_measurement_9_sensor_slope_20": 1900,
+        "sensor_measurement_10_sensor_slope_20": 1900,
+        "sensor_measurement_11_sensor_slope_20": 1900,
+        "sensor_measurement_12_sensor_slope_20": 1900,
+        "sensor_measurement_13_sensor_slope_20": 1900,
+        "sensor_measurement_14_sensor_slope_20": 1900,
+        "sensor_measurement_15_sensor_slope_20": 1900,
+        "sensor_measurement_16_sensor_slope_20": 1900,
+        "sensor_measurement_17_sensor_slope_20": 1900,
+        "sensor_measurement_18_sensor_slope_20": 1900,
+        "sensor_measurement_19_sensor_slope_20": 1900,
+        "sensor_measurement_20_sensor_slope_20": 1900,
+        "sensor_measurement_21_sensor_slope_20": 1900
+      }
+    },
+    "parquet_roundtrip_train": true,
+    "features_test": {
+      "shape": [
+        13096,
+        194
+      ],
+      "engines": 100,
+      "duplicate_keys": 0,
+      "unique_columns": true,
+      "complete_window_rows": 11196,
+      "rows_with_null": 1900,
+      "complete_window_nulls": 0,
+      "infinities": 0,
+      "null_counts": {
+        "sensor_measurement_1_mean_20": 1900,
+        "sensor_measurement_2_mean_20": 1900,
+        "sensor_measurement_3_mean_20": 1900,
+        "sensor_measurement_4_mean_20": 1900,
+        "sensor_measurement_5_mean_20": 1900,
+        "sensor_measurement_6_mean_20": 1900,
+        "sensor_measurement_7_mean_20": 1900,
+        "sensor_measurement_8_mean_20": 1900,
+        "sensor_measurement_9_mean_20": 1900,
+        "sensor_measurement_10_mean_20": 1900,
+        "sensor_measurement_11_mean_20": 1900,
+        "sensor_measurement_12_mean_20": 1900,
+        "sensor_measurement_13_mean_20": 1900,
+        "sensor_measurement_14_mean_20": 1900,
+        "sensor_measurement_15_mean_20": 1900,
+        "sensor_measurement_16_mean_20": 1900,
+        "sensor_measurement_17_mean_20": 1900,
+        "sensor_measurement_18_mean_20": 1900,
+        "sensor_measurement_19_mean_20": 1900,
+        "sensor_measurement_20_mean_20": 1900,
+        "sensor_measurement_21_mean_20": 1900,
+        "sensor_measurement_1_std_20": 1900,
+        "sensor_measurement_2_std_20": 1900,
+        "sensor_measurement_3_std_20": 1900,
+        "sensor_measurement_4_std_20": 1900,
+        "sensor_measurement_5_std_20": 1900,
+        "sensor_measurement_6_std_20": 1900,
+        "sensor_measurement_7_std_20": 1900,
+        "sensor_measurement_8_std_20": 1900,
+        "sensor_measurement_9_std_20": 1900,
+        "sensor_measurement_10_std_20": 1900,
+        "sensor_measurement_11_std_20": 1900,
+        "sensor_measurement_12_std_20": 1900,
+        "sensor_measurement_13_std_20": 1900,
+        "sensor_measurement_14_std_20": 1900,
+        "sensor_measurement_15_std_20": 1900,
+        "sensor_measurement_16_std_20": 1900,
+        "sensor_measurement_17_std_20": 1900,
+        "sensor_measurement_18_std_20": 1900,
+        "sensor_measurement_19_std_20": 1900,
+        "sensor_measurement_20_std_20": 1900,
+        "sensor_measurement_21_std_20": 1900,
+        "sensor_measurement_1_min_20": 1900,
+        "sensor_measurement_2_min_20": 1900,
+        "sensor_measurement_3_min_20": 1900,
+        "sensor_measurement_4_min_20": 1900,
+        "sensor_measurement_5_min_20": 1900,
+        "sensor_measurement_6_min_20": 1900,
+        "sensor_measurement_7_min_20": 1900,
+        "sensor_measurement_8_min_20": 1900,
+        "sensor_measurement_9_min_20": 1900,
+        "sensor_measurement_10_min_20": 1900,
+        "sensor_measurement_11_min_20": 1900,
+        "sensor_measurement_12_min_20": 1900,
+        "sensor_measurement_13_min_20": 1900,
+        "sensor_measurement_14_min_20": 1900,
+        "sensor_measurement_15_min_20": 1900,
+        "sensor_measurement_16_min_20": 1900,
+        "sensor_measurement_17_min_20": 1900,
+        "sensor_measurement_18_min_20": 1900,
+        "sensor_measurement_19_min_20": 1900,
+        "sensor_measurement_20_min_20": 1900,
+        "sensor_measurement_21_min_20": 1900,
+        "sensor_measurement_1_max_20": 1900,
+        "sensor_measurement_2_max_20": 1900,
+        "sensor_measurement_3_max_20": 1900,
+        "sensor_measurement_4_max_20": 1900,
+        "sensor_measurement_5_max_20": 1900,
+        "sensor_measurement_6_max_20": 1900,
+        "sensor_measurement_7_max_20": 1900,
+        "sensor_measurement_8_max_20": 1900,
+        "sensor_measurement_9_max_20": 1900,
+        "sensor_measurement_10_max_20": 1900,
+        "sensor_measurement_11_max_20": 1900,
+        "sensor_measurement_12_max_20": 1900,
+        "sensor_measurement_13_max_20": 1900,
+        "sensor_measurement_14_max_20": 1900,
+        "sensor_measurement_15_max_20": 1900,
+        "sensor_measurement_16_max_20": 1900,
+        "sensor_measurement_17_max_20": 1900,
+        "sensor_measurement_18_max_20": 1900,
+        "sensor_measurement_19_max_20": 1900,
+        "sensor_measurement_20_max_20": 1900,
+        "sensor_measurement_21_max_20": 1900,
+        "sensor_measurement_1_difference": 100,
+        "sensor_measurement_2_difference": 100,
+        "sensor_measurement_3_difference": 100,
+        "sensor_measurement_4_difference": 100,
+        "sensor_measurement_5_difference": 100,
+        "sensor_measurement_6_difference": 100,
+        "sensor_measurement_7_difference": 100,
+        "sensor_measurement_8_difference": 100,
+        "sensor_measurement_9_difference": 100,
+        "sensor_measurement_10_difference": 100,
+        "sensor_measurement_11_difference": 100,
+        "sensor_measurement_12_difference": 100,
+        "sensor_measurement_13_difference": 100,
+        "sensor_measurement_14_difference": 100,
+        "sensor_measurement_15_difference": 100,
+        "sensor_measurement_16_difference": 100,
+        "sensor_measurement_17_difference": 100,
+        "sensor_measurement_18_difference": 100,
+        "sensor_measurement_19_difference": 100,
+        "sensor_measurement_20_difference": 100,
+        "sensor_measurement_21_difference": 100,
+        "sensor_measurement_1_%change": 100,
+        "sensor_measurement_2_%change": 100,
+        "sensor_measurement_3_%change": 100,
+        "sensor_measurement_4_%change": 100,
+        "sensor_measurement_5_%change": 100,
+        "sensor_measurement_6_%change": 100,
+        "sensor_measurement_7_%change": 100,
+        "sensor_measurement_8_%change": 100,
+        "sensor_measurement_9_%change": 100,
+        "sensor_measurement_10_%change": 100,
+        "sensor_measurement_11_%change": 100,
+        "sensor_measurement_12_%change": 100,
+        "sensor_measurement_13_%change": 100,
+        "sensor_measurement_14_%change": 100,
+        "sensor_measurement_15_%change": 100,
+        "sensor_measurement_16_%change": 100,
+        "sensor_measurement_17_%change": 100,
+        "sensor_measurement_18_%change": 100,
+        "sensor_measurement_19_%change": 100,
+        "sensor_measurement_20_%change": 100,
+        "sensor_measurement_21_%change": 100,
+        "sensor_measurement_1_sensor_slope_20": 1900,
+        "sensor_measurement_2_sensor_slope_20": 1900,
+        "sensor_measurement_3_sensor_slope_20": 1900,
+        "sensor_measurement_4_sensor_slope_20": 1900,
+        "sensor_measurement_5_sensor_slope_20": 1900,
+        "sensor_measurement_6_sensor_slope_20": 1900,
+        "sensor_measurement_7_sensor_slope_20": 1900,
+        "sensor_measurement_8_sensor_slope_20": 1900,
+        "sensor_measurement_9_sensor_slope_20": 1900,
+        "sensor_measurement_10_sensor_slope_20": 1900,
+        "sensor_measurement_11_sensor_slope_20": 1900,
+        "sensor_measurement_12_sensor_slope_20": 1900,
+        "sensor_measurement_13_sensor_slope_20": 1900,
+        "sensor_measurement_14_sensor_slope_20": 1900,
+        "sensor_measurement_15_sensor_slope_20": 1900,
+        "sensor_measurement_16_sensor_slope_20": 1900,
+        "sensor_measurement_17_sensor_slope_20": 1900,
+        "sensor_measurement_18_sensor_slope_20": 1900,
+        "sensor_measurement_19_sensor_slope_20": 1900,
+        "sensor_measurement_20_sensor_slope_20": 1900,
+        "sensor_measurement_21_sensor_slope_20": 1900
+      }
+    },
+    "parquet_roundtrip_test": true,
+    "train_test_feature_columns_match": true,
+    "training_target_correct": true,
+    "notebooks_03_and_05_targets_match": true,
+    "old_and_final_training_features_match": true,
+    "old_test_shape": [
+      13096,
+      26
+    ],
+    "eda_terminal_labels_match": true,
+    "eda_train_heatmap_includes_target": false,
+    "test_shortest_history": 31,
+    "prefix_invariance_and_future_perturbation": true,
+    "engine_isolation": true,
+    "input_sorting": true,
+    "known_linear_slope": true,
+    "zero_denominator_safety": true,
+    "silver_validation_probes": {
+      "clean": {
+        "result": "accepted",
+        "output_train_rows": 20631
+      },
+      "sensor_nan": {
+        "result": "rejected",
+        "reason": "ValueError: train contains null values: {'sensor_measurement_2': 1}"
+      },
+      "sensor_inf": {
+        "result": "rejected",
+        "reason": "ValueError: test contains non-finite numeric values. Examples: [{'row': 0, 'column': 'sensor_measurement_2', 'value': np.float64(inf)}]"
+      },
+      "negative_engine_id": {
+        "result": "rejected",
+        "reason": "ValueError: train contains non-positive engine IDs: [-1]"
+      },
+      "missing_sensor_column": {
+        "result": "rejected",
+        "reason": "ValueError: Number of columns in train df is wrong"
+      },
+      "exact_duplicate": {
+        "result": "accepted",
+        "output_train_rows": 20631
+      },
+      "conflicting_duplicate": {
+        "result": "rejected",
+        "reason": "ValueError: Train data contains conflicting records for the same engine and cycle."
+      },
+      "missing_cycle": {
+        "result": "rejected",
+        "reason": "ValueError: Missing time sequence in train df"
+      },
+      "negative_rul": {
+        "result": "rejected",
+        "reason": "ValueError: Existence of negative value in remaining_useful_life"
+      }
+    },
+    "gold_metadata_before_rerun_03": [
+      "rul_training_features",
+      "train_features",
+      "test_features"
+    ],
+    "gold_metadata_after_rerun_03": [
+      "train_features",
+      "test_features",
+      "rul_training_features"
+    ],
+    "live_readback": [
+      {
+        "layer": "raw",
+        "dataset": "train_data",
+        "run_id": "20260902T120041719003Z",
+        "shape": [
+          20631,
+          26
+        ],
+        "row_count_matches": true,
+        "matches_local_source": true
+      },
+      {
+        "layer": "raw",
+        "dataset": "test_data",
+        "run_id": "20260902T120041719003Z",
+        "shape": [
+          13096,
+          26
+        ],
+        "row_count_matches": true,
+        "matches_local_source": true
+      },
+      {
+        "layer": "raw",
+        "dataset": "RUL_data",
+        "run_id": "20260902T120041719003Z",
+        "shape": [
+          100,
+          2
+        ],
+        "row_count_matches": true,
+        "matches_local_source": true
+      },
+      {
+        "layer": "silver",
+        "dataset": "train_data",
+        "run_id": "20260902T120041719003Z",
+        "shape": [
+          20631,
+          28
+        ],
+        "row_count_matches": true,
+        "matches_local_source": true
+      },
+      {
+        "layer": "silver",
+        "dataset": "test_data",
+        "run_id": "20260902T120041719003Z",
+        "shape": [
+          13096,
+          28
+        ],
+        "row_count_matches": true,
+        "matches_local_source": true
+      },
+      {
+        "layer": "silver",
+        "dataset": "RUL_data",
+        "run_id": "20260902T120041719003Z",
+        "shape": [
+          100,
+          4
+        ],
+        "row_count_matches": true,
+        "matches_local_source": true
+      },
+      {
+        "layer": "gold",
+        "dataset": "rul_training_features",
+        "run_id": "20260902T120041719003Z",
+        "shape": [
+          20631,
+          27
+        ],
+        "row_count_matches": true
+      },
+      {
+        "layer": "gold",
+        "dataset": "train_features",
+        "run_id": "20260902T120041719003Z",
+        "shape": [
+          20631,
+          195
+        ],
+        "row_count_matches": true,
+        "matches_recomputed_features": true
+      },
+      {
+        "layer": "gold",
+        "dataset": "test_features",
+        "run_id": "20260902T120041719003Z",
+        "shape": [
+          13096,
+          194
+        ],
+        "row_count_matches": true,
+        "matches_recomputed_features": true
+      }
+    ],
+    "plots_executed": 63,
+    "remote_writes_performed": 0,
+    "in_memory_objects_written": 10
+  },
+  "live_objects": [
+    {
+      "key": "gold/rul_training_features/load_date=2026-09-02/run_id=20260902T120041719003Z/rul.parquet",
+      "bytes": 1124167
+    },
+    {
+      "key": "gold/test_features/load_date=2026-09-02/run_id=20260902T120041719003Z/test_features.parquet",
+      "bytes": 7782198
+    },
+    {
+      "key": "gold/train_features/load_date=2026-09-02/run_id=20260902T120041719003Z/train_features.parquet",
+      "bytes": 12643378
+    },
+    {
+      "key": "metadata/etl_metadata/load_date=2026-09-02/run_id=20260902T120041719003Z/manifest.parquet",
+      "bytes": 2742
+    },
+    {
+      "key": "raw/RUL_data/load_date=2026-09-02/run_id=20260902T120041719003Z/RUL.parquet",
+      "bytes": 1961
+    },
+    {
+      "key": "raw/test_data/load_date=2026-09-02/run_id=20260902T120041719003Z/test.parquet",
+      "bytes": 705763
+    },
+    {
+      "key": "raw/train_data/load_date=2026-09-02/run_id=20260902T120041719003Z/train.parquet",
+      "bytes": 1112386
+    },
+    {
+      "key": "silver/RUL_data/load_date=2026-09-02/run_id=20260902T120041719003Z/RUL_data.parquet",
+      "bytes": 2863
+    },
+    {
+      "key": "silver/test_data/load_date=2026-09-02/run_id=20260902T120041719003Z/test_data.parquet",
+      "bytes": 746088
+    },
+    {
+      "key": "silver/train_data/load_date=2026-09-02/run_id=20260902T120041719003Z/train_data.parquet",
+      "bytes": 1175557
+    }
+  ],
+  "live_metadata": [
+    {
+      "run_id": "20260902T120041719003Z",
+      "load_date": "2026-09-02",
+      "layer": "raw",
+      "dataset_name": "train_data",
+      "object_key": "raw/train_data/load_date=2026-09-02/run_id=20260902T120041719003Z/train.parquet",
+      "status": "success",
+      "row_count": 20631,
+      "recorded_at": "2026-09-02T12:00:43.364215+00:00"
+    },
+    {
+      "run_id": "20260902T120041719003Z",
+      "load_date": "2026-09-02",
+      "layer": "raw",
+      "dataset_name": "test_data",
+      "object_key": "raw/test_data/load_date=2026-09-02/run_id=20260902T120041719003Z/test.parquet",
+      "status": "success",
+      "row_count": 13096,
+      "recorded_at": "2026-09-02T12:00:43.447593+00:00"
+    },
+    {
+      "run_id": "20260902T120041719003Z",
+      "load_date": "2026-09-02",
+      "layer": "raw",
+      "dataset_name": "RUL_data",
+      "object_key": "raw/RUL_data/load_date=2026-09-02/run_id=20260902T120041719003Z/RUL.parquet",
+      "status": "success",
+      "row_count": 100,
+      "recorded_at": "2026-09-02T12:00:43.470992+00:00"
+    },
+    {
+      "run_id": "20260902T120041719003Z",
+      "load_date": "2026-09-02",
+      "layer": "silver",
+      "dataset_name": "train_data",
+      "object_key": "silver/train_data/load_date=2026-09-02/run_id=20260902T120041719003Z/train_data.parquet",
+      "status": "success",
+      "row_count": 20631,
+      "recorded_at": "2026-09-02T12:01:39.729515+00:00"
+    },
+    {
+      "run_id": "20260902T120041719003Z",
+      "load_date": "2026-09-02",
+      "layer": "silver",
+      "dataset_name": "test_data",
+      "object_key": "silver/test_data/load_date=2026-09-02/run_id=20260902T120041719003Z/test_data.parquet",
+      "status": "success",
+      "row_count": 13096,
+      "recorded_at": "2026-09-02T12:01:39.786890+00:00"
+    },
+    {
+      "run_id": "20260902T120041719003Z",
+      "load_date": "2026-09-02",
+      "layer": "silver",
+      "dataset_name": "RUL_data",
+      "object_key": "silver/RUL_data/load_date=2026-09-02/run_id=20260902T120041719003Z/RUL_data.parquet",
+      "status": "success",
+      "row_count": 100,
+      "recorded_at": "2026-09-02T12:01:39.809506+00:00"
+    },
+    {
+      "run_id": "20260902T120041719003Z",
+      "load_date": "2026-09-02",
+      "layer": "gold",
+      "dataset_name": "rul_training_features",
+      "object_key": "gold/rul_training_features/load_date=2026-09-02/run_id=20260902T120041719003Z/rul.parquet",
+      "status": "success",
+      "row_count": 20631,
+      "recorded_at": "2026-09-02T12:04:10.900511+00:00"
+    },
+    {
+      "run_id": "20260902T120041719003Z",
+      "load_date": "2026-09-02",
+      "layer": "gold",
+      "dataset_name": "train_features",
+      "object_key": "gold/train_features/load_date=2026-09-02/run_id=20260902T120041719003Z/train_features.parquet",
+      "status": "success",
+      "row_count": 20631,
+      "recorded_at": "2026-09-04T02:19:59.813028+00:00"
+    },
+    {
+      "run_id": "20260902T120041719003Z",
+      "load_date": "2026-09-02",
+      "layer": "gold",
+      "dataset_name": "test_features",
+      "object_key": "gold/test_features/load_date=2026-09-02/run_id=20260902T120041719003Z/test_features.parquet",
+      "status": "success",
+      "row_count": 13096,
+      "recorded_at": "2026-09-04T02:20:00.067004+00:00"
+    }
+  ]
+}
