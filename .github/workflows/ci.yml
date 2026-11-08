@@ -30,3 +30,15 @@ jobs:
 
       - name: Run tests
         run: python -m pytest tests -q
+
+      - name: Build Airflow image
+        run: docker build -t cmapss-airflow-ci ./airflow
+
+      - name: Check Airflow DAG loading
+        run: |
+          docker run --rm --network none \
+            --entrypoint python \
+            -e PYTHONPATH=/opt/cmapss \
+            -v "${GITHUB_WORKSPACE}:/opt/cmapss:ro" \
+            cmapss-airflow-ci \
+            /opt/cmapss/airflow/check_dag_import.py
