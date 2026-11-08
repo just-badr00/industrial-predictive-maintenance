@@ -42,3 +42,6 @@ jobs:
             -v "${GITHUB_WORKSPACE}:/opt/cmapss:ro" \
             cmapss-airflow-ci \
             /opt/cmapss/airflow/check_dag_import.py
+
+      - name: Build API image
+        run: docker build -f api/Dockerfile -t maintenance-api-ci .
