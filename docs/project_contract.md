@@ -1,83 +1,156 @@
 # Industrial Predictive Maintenance MLOps Platform
 
-## Phase 0 - Project Specification Contract
+## Project contract
 
-**Status:** Approved initial scope  
-**Version:** 1.0  
+**Status:** Implemented local educational scope through integrated deployment
+
+**Version:** 2.0
+
+**Updated:** 2026-11-10 (UTC)
+
 **Dataset:** NASA C-MAPSS FD001
 
-### 1. Business problem
+## Business problem and objective
 
-Unexpected machine failure can create safety risks, production downtime, and expensive emergency maintenance. This project will build a predictive-maintenance platform that uses historical engine sensor data to estimate when an engine may fail, allowing maintenance teams to plan interventions earlier.
+Estimate an engine's Remaining Useful Life (RUL), measured in operating
+cycles, from operational settings and sensor history. Present the estimate,
+a maintenance status and model explanations to maintenance/reliability
+engineers and fleet operators. The project demonstrates the path from
+validated industrial data to a monitored, locally deployed ML system.
 
-### 2. Project objective
+## Dataset and grain
 
-Build an end-to-end, reproducible MLOps system that predicts the **Remaining Useful Life (RUL)** of a simulated aircraft engine. RUL is the estimated number of operating cycles remaining before failure.
+FD001 represents one main operating condition and one degradation mode.
+Each source row describes one engine at one cycle, with an engine ID,
+cycle number, three operational settings and 21 sensor measurements.
 
-The initial version will focus on understanding the data, creating leakage-safe features, training a baseline model, and making predictions available through a simple operational workflow.
+- Training histories continue until failure. Training RUL is final cycle
+  minus current cycle.
+- Test histories stop before failure. The RUL file supplies the label for
+  each test engine's final observed cycle.
+- Per-cycle test RUL used for analysis is terminal RUL plus final observed
+  cycle minus current cycle. Labels never become model inputs.
+- Train and test engine IDs belong to separate datasets, even when their
+  numeric values coincide.
 
-### 3. Dataset and scope
+Raw stores parsed, typed Parquet representations of the text inputs rather
+than byte-identical source files. Silver removes exact duplicates, rejects
+conflicting records and sorts/validates histories. Gold holds features and
+run-scoped prediction/health snapshots. ETL manifests identify exact objects
+and lineage in MinIO.
 
-The first release will use **FD001** only because it contains one operating condition and one main degradation mode. Each row represents one engine during one operating cycle.
+## Prediction interface
 
-- Training data: engine histories that continue until failure.
-- Test data: engine histories that stop before failure.
-- RUL files: the true remaining cycles for the final observed row of each test engine.
-- Inputs: engine ID, cycle, three operational settings, and 21 sensor measurements.
+The stateless FastAPI service accepts one engine through `POST /predict`
+or several through `POST /predict/batch`. Requests contain complete raw
+histories from cycle 1 to the requested current cycle, ordered and
+consecutive, with at least 20 observations. Every observation supplies its
+cycle, three settings and all 21 finite sensor measurements. Engine IDs
+are positive integers. Unexpected fields and invalid histories are rejected.
 
-The other datasets (FD002, FD003, and FD004) are future extensions after the FD001 pipeline is understood and validated.
+Features are calculated within each engine using current values, trailing
+20-cycle statistics/slopes, differences, percentage changes and recursive
+EMA. The first complete rolling window ends at cycle 20. Complete history
+is required because EMA retains earlier information. Inference selects the
+saved 137 input columns by name and training order; engine ID and RUL are
+not model inputs. Missing or non-finite selected inputs are rejected.
 
-### 4. Prediction contract
+Responses contain:
 
-**Input:** the recent operating history of one engine, initially represented by its cycle, operational settings, and sensor measurements. Later versions may use a rolling window of the most recent 20 cycles.
+| Field | Meaning |
+|---|---|
+| `engine_id`, `cycle` | Engine and latest observed cycle |
+| `predicted_rul` | Estimated nonnegative remaining cycles |
+| `status` | `healthy`, `warning` or `critical` |
+| `model_version` | Serving model version |
+| `top_factors` | Three largest-magnitude signed SHAP contributions, with feature names and values |
 
-**Output:**
+Status rules are critical for RUL <= 10, warning for 10 < RUL <= 30,
+and healthy for RUL > 30. SHAP describes contributions relative to the
+model baseline; it is not a physical diagnosis. Batch output preserves
+request order and fails as a whole for invalid input.
 
-```text
-predicted_rul       estimated remaining cycles
-health_status       healthy, warning, or critical
-model_version       version of the model used
-```
+`GET /health` checks loaded model availability. `GET /model-info` reports
+model identity and training/Gold lineage. API requests do not automatically
+persist incoming histories or their results to MinIO.
 
-Health-status rules:
+## Model selection and evaluation
 
-- Healthy: RUL > 30 cycles
-- Warning: 10 < RUL <= 30 cycles
-- Critical: RUL <= 10 cycles
+Mean RUL, Linear Regression, Random Forest and XGBoost were compared using
+engine-level validation. Random Forest advanced based on MAE, stability
+and near-failure behavior, followed by five engine-level folds and Optuna
+selection using operational cost. The final registered model is
+`cmapss_fd001_rul_random_forest`, version 1, alias `candidate`: 153 trees,
+`min_samples_leaf=2`, `max_features=None`, `random_state=42`.
 
-### 5. Intended users
+Engine-level splits keep every engine's rows on one side. Constant-column
+selection and learned preprocessing use training engines only. Features
+must not use future observations. The official test set was evaluated after
+model/configuration selection; further tuning on it requires a new
+validation strategy.
 
-The intended users are maintenance engineers, reliability engineers, fleet operators, and operations managers. The system must communicate both the numerical prediction and an understandable maintenance status.
+Evaluation includes MAE, RMSE, R², error by engine and RUL range, signed
+residuals, warning lead time, missed-critical/false-alarm observations and
+engine-level first-alert behavior. Saved final-model results are:
 
-### 6. Evaluation criteria
+| Scope | Observations | MAE | RMSE | R² |
+|---|---|---:|---:|---:|
+| Official final observed cycle | 100, one per test engine | 19.3974 | 26.0757 | 0.6063 |
+| All eligible official-test cycles | 11,196 | 31.5126 | 41.7455 | 0.4436 |
 
-Model performance will be assessed using MAE, RMSE, R², error by RUL range, and error near failure. We will also report early-warning performance, missed critical engines, false alarms, and warning lead time. Late predictions will be treated as more serious than slightly early predictions because failing to warn before a failure is operationally costly.
+These are distinct evaluation scopes, not interchangeable scores. SHAP
+analysis used a sample; only five predicted-critical rows were explained
+in the saved critical analysis.
 
-Data must be split by engine ID. Rows from the same engine must not be randomly divided between training and validation/test sets. Scalers, feature transformations, and other learned preprocessing steps must be fitted only on the training engines.
+## Implemented architecture and operation
 
-### 7. Planned system architecture
+- pandas processes FD001 data; MinIO stores Raw/Silver/Gold, manifests and
+  monitoring JSON. PySpark is not used.
+- Notebooks contain exploration, training and model analysis. Reusable
+  operational pipeline, serving and monitoring code lives under `src/`.
+- MLflow tracks experiments and model versions. The container server uses
+  a prepared SQLite copy and mounted historical artifacts. PostgreSQL
+  stores Airflow metadata only.
+- FastAPI loads the exported model and SHAP explainer once at startup.
+  Streamlit requests predictions over HTTP and reads saved fleet snapshots
+  and monitoring reports from MinIO.
+- Airflow runs one ten-task, manually triggered data/prediction DAG. It
+  does not retrain, register or promote models. Raw-quality failures gate
+  downstream processing; descriptive drift and accuracy findings can be
+  published without failing the DAG.
+- Monitoring records Raw quality, feature-distribution comparisons,
+  prediction statistics, optional labeled endpoint accuracy, batch HTTP
+  timing and an MAE alert. The FD001 DAG enables benchmark labels. Default
+  mean-shift/spread rules and the 25-cycle MAE limit are demonstration
+  thresholds, not operationally calibrated safety limits.
+- Overview and Maintenance Queue show saved Airflow snapshots or three
+  demo engines. Engine Explorer remains a three-engine demonstration.
+  Dashboard reruns fetch saved state; there is no sensor stream or automatic
+  timer-based refresh.
+- Docker Compose runs the integrated local services. GitHub Actions checks
+  code, tests, DAG loading, four image builds and Compose configuration.
+  It does not automatically deploy images.
 
-```text
-C-MAPSS files
-      -> Raw storage
-      -> Schema and data-quality validation
-      -> Clean Silver data
-      -> RUL and time-series features
-      -> Model training and evaluation
-      -> MLflow tracking and model registry
-      -> FastAPI prediction service
-      -> Streamlit monitoring dashboard
-      -> Airflow orchestration
-```
+## Acceptance and limitations
 
-### 8. Initial deliverables
+The agreed scope is demonstrated by a successful ten-task FD001 run,
+published fleet/monitoring outputs, working prediction and dashboard views,
+model registry/artifact access, passing CI and restartable Compose services.
+See [README](../README.md) for resources, commands and URLs.
 
-The project will produce a documented FD001 ingestion process, raw and processed datasets, data-quality checks, leakage-safe feature generation, baseline models, evaluation reports, an MLflow-tracked model, a prediction API, a monitoring dashboard, automated workflow tasks, tests, and setup documentation.
+Deployment requires supplied datasets, model files, historical MLflow state
+and persistent volumes; a fresh clone alone cannot recreate them. Existing
+preparation utilities use the original Windows paths. Direct-package pins
+and mutable base images are not a complete immutable dependency lock.
+Manifest publication is not a multi-object transaction, and out-of-band
+concurrent writers are not coordinated.
 
-### 9. Limitations and exclusions
+Explicit sensor-range rules, reference-fleet new-engine detection and
+cross-run abnormal row-count alerts remain outside the completed monitoring
+scope. Benchmark replays create new run partitions, not new training
+information or evidence of a changing live fleet.
 
-C-MAPSS is simulated benchmark data and is not real aircraft-maintenance data. The resulting model is for education and portfolio demonstration only and must not be used for real safety decisions. The initial scope excludes Kubernetes, Kafka, cloud deployment, real-time streaming, deep learning, and production certification. These may be considered as later extensions.
-
-### Definition of success
-
-The initial project is successful when a new FD001 engine history can be validated, transformed into features without data leakage, scored by a reproducibly trained model, and presented with a RUL estimate and health status through the planned platform components.
+C-MAPSS is simulated data. The project is for education and portfolio
+presentation, not real aircraft-maintenance or safety decisions. Cloud
+hosting, streaming, Kubernetes, Kafka, deep learning, production
+certification and automatic retraining/promotion are outside scope.

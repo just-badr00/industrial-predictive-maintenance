@@ -4,6 +4,7 @@
 **/*.pyc
 .pytest_cache/
 .git/
+.local-archive/
 
 # Local settings, databases, and logs.
 .env
@@ -22,7 +23,5 @@ output/
 airflow/
 dashboard/
 docs/
-reports/
 tests/
 requirements-phase1.txt
-phase5_review_check.py

@@ -7,6 +7,26 @@ The platform includes pandas data processing, MinIO storage, a registered
 Random Forest model, FastAPI predictions, SHAP explanations, a Streamlit
 dashboard, Airflow orchestration, monitoring and GitHub Actions checks.
 
+See [the project contract](docs/project_contract.md) for the prediction
+interface, evaluation rules, architecture and limitations.
+
+## Repository layout
+
+| Path | Contents |
+|---|---|
+| `src/` | Ingestion, validation, transformations, inference, API and monitoring |
+| `notebooks/` | Dataset exploration, feature development, training and model analysis |
+| `tests/` | Automated validation, pipeline, API and monitoring tests |
+| `api/` | API image definition and serving dependencies |
+| `dashboard/` | Streamlit application, image definition and dependencies |
+| `airflow/` | DAG, Airflow image and DAG-loading check |
+| `mlflow/` | MLflow image and initial database-preparation utilities |
+| `docs/` | Maintained project contract and runnable API example payloads |
+| `.github/workflows/` | Continuous integration checks |
+
+Dataset files, experiment artifacts, generated outputs and runtime
+configuration are supplied locally rather than committed.
+
 ## Local deployment
 
 The root `docker-compose.yaml` coordinates:
@@ -119,15 +139,116 @@ under `airflow/config`; credentials must not be committed.
 
 Open Airflow and trigger a new manual run of `cmapss_data_prediction`.
 
-The ten-task workflow ingests and validates data, generates features,
-checks drift, requests predictions, records model monitoring and publishes
-a dashboard snapshot.
+The ten-task workflow is:
+
+```text
+check_source_data -> ingest_raw_data -> monitor_raw_quality
+  -> transform_to_silver -> generate_features -> validate_features
+  -> monitor_feature_drift -> predict_current_health
+  -> monitor_model -> publish_dashboard_dataset
+```
+
+Unpause the DAG if necessary and trigger a new manual run. In the Airflow
+UI, select a task and open its Logs to inspect progress or failures. The
+prediction task prints progress from `Predicted 10/100 test engines.` to
+`100/100`. A failed upstream task blocks dependent tasks. Storage/network
+tasks have one retry after 30 seconds; source and feature validation tasks
+have no retries.
 
 After success, open Streamlit and select Overview → Latest Airflow run.
 Refresh the page to retrieve the latest published snapshot.
 
-The workflow does not retrain or promote models. Engine Explorer remains
-an interactive three-engine demonstration.
+Selecting a stored snapshot does not call the prediction API or trigger a
+DAG run. The workflow does not retrain or promote models. Engine Explorer
+remains an interactive three-engine demonstration.
+
+Each run stores a manifest at
+`metadata/etl_metadata/load_date=<date>/run_id=<run-id>/manifest.parquet`.
+Gold `maintenance_predictions` and `current_engine_health` each contain one
+row per test engine. The three monitoring reports are stored under
+`monitoring/data_quality/`, `monitoring/data_drift/` and `monitoring/model/`
+with the same date and run ID. Model benchmark accuracy is evaluated at
+the final observed cycle per engine; it is distinct from all-cycle metrics.
+
+Use a new manual run for a fresh execution. Retrying a task normally reuses
+its run partition. Avoid changing source files during a run. Manifest
+updates are not multi-object transactions; failed uploads can leave partial
+objects without successful publication records.
+
+## Prediction API
+
+| Method and route | Purpose |
+|---|---|
+| `GET /health` | Check that the API has a loaded model |
+| `GET /model-info` | Retrieve model version and training/data lineage |
+| `POST /predict` | Predict the current RUL of one engine |
+| `POST /predict/batch` | Predict the current RUL of several engines |
+
+Use the interactive documentation with the complete payloads in
+`docs/examples/predict_engine_1.json` and
+`docs/examples/predict_batch_engines_1_2_3.json`.
+
+Submit every observed cycle from cycle 1 through the current cycle, in
+order without gaps, with at least 20 observations. Each observation needs
+its cycle, three operational settings and all 21 sensors. The API computes
+features and selects the saved 137 model inputs in training order. A
+trailing 20-row segment is insufficient because EMA retains earlier history.
+
+Responses include RUL, status, model version and three signed SHAP factors.
+Critical means RUL <= 10, warning means 10 < RUL <= 30, and healthy means
+RUL > 30. Factors describe model contributions, not physical diagnoses.
+Invalid requests normally return HTTP 422. A stopped service produces a
+connection failure rather than an HTTP response.
+
+The API image contains source code, while `output/serving_model` is mounted
+read-only at `/model`. The model and SHAP explainer load once at startup.
+The container uses the exported bundle without consulting the Windows
+registry database. Initial export uses `python -m src.modeling.export_model`
+from the project root and refuses to overwrite an existing bundle. Do not
+rerun the exporter merely to restart services.
+
+## Updating and troubleshooting services
+
+Inspect one service's logs with, for example:
+
+```powershell
+docker compose logs --tail 60 api
+docker compose logs --tail 60 airflow-scheduler airflow-dag-processor airflow-apiserver
+```
+
+Image-copied code changes require a rebuild and container replacement:
+
+```powershell
+docker compose up -d --build api streamlit
+```
+
+Mounted files are visible without rebuilding an image, but changing a DAG
+does not rerun it automatically. The API keeps its loaded model in memory;
+restart it after deliberately replacing a compatible serving bundle.
+
+The external MinIO and PostgreSQL volumes retain their data across normal
+container replacement. The original standalone deployment and the root
+Compose stack must not use those volumes simultaneously.
+
+## Automated checks
+
+GitHub Actions installs `requirements-test.txt`, runs Ruff F821/F823 and
+pytest, checks real Airflow DAG loading, builds all four custom images and
+validates Compose using placeholder settings. It does not deploy services.
+
+In a supported Python 3.14 environment, the equivalent test setup is:
+
+```text
+python -m pip install -r requirements-test.txt
+python -m pytest tests -q
+```
+
+Tests use controlled model/storage/API substitutes and the committed JSON
+examples; they do not require the running platform or production artifacts.
+The feature-equivalence test also reads the final feature-engineering
+notebook. The verified full-suite environment is Linux/CI. Windows Smart
+App Control has previously blocked a compiled scikit-learn component during
+collection; a dependency installation does not remove that policy block.
 
 ## Scope
 
@@ -135,5 +256,7 @@ This is a local educational system using simulated benchmark data.
 Monitoring covers the documented project scope; it is not a certified
 aircraft-maintenance system.
 
-The detailed implementation history and decisions are recorded in
-`docs/project_complete_handoff_through_phase_8.md`.
+The deployment reuses prepared local state. Database preparation currently
+uses the original Windows paths, and dependencies/base images are not a
+complete immutable lock. Clean-machine bootstrap, automated training,
+release publishing and cloud deployment are outside this implementation.
