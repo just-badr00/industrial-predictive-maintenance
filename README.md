@@ -1,14 +1,84 @@
 # Industrial Predictive Maintenance MLOps Platform
 
+[![Project checks](https://github.com/just-badr00/industrial-predictive-maintenance/actions/workflows/ci.yml/badge.svg)](https://github.com/just-badr00/industrial-predictive-maintenance/actions/workflows/ci.yml)
+
 An educational MLOps platform that predicts engine Remaining Useful Life
-(RUL) using NASA C-MAPSS FD001 sensor histories.
+(RUL) using NASA C-MAPSS FD001 sensor histories. It connects validated
+industrial data to model serving, monitoring, and maintenance dashboards.
 
-The platform includes pandas data processing, MinIO storage, a registered
-Random Forest model, FastAPI predictions, SHAP explanations, a Streamlit
-dashboard, Airflow orchestration, monitoring and GitHub Actions checks.
+**Python · pandas · MinIO · scikit-learn · MLflow · FastAPI · SHAP · Airflow · Streamlit · Docker**
 
-See [the project contract](docs/project_contract.md) for the prediction
-interface, evaluation rules, architecture and limitations.
+The platform combines leakage-safe feature engineering, a registered Random
+Forest model, API predictions with SHAP explanations, a ten-task Airflow
+workflow, monitoring, and GitHub Actions checks.
+
+## Dashboard preview
+
+![Streamlit fleet overview showing 100 published engines: 82 healthy, 16 warning, and 2 critical, with predicted RUL and maintenance priorities.](assets/dashboard-overview.png)
+
+The Overview displays saved predictions from the latest published Airflow
+run, one result per engine at its latest observed cycle. The supplied
+screenshot shows 100 engines, their health categories, predicted RUL, and
+maintenance priorities. It is a saved benchmark snapshot, not a live fleet.
+
+## Model results
+
+The selected Random Forest achieved **MAE 19.40 cycles** and **RMSE 26.08
+cycles** at the final observed cycle of each of the **100 official FD001
+test engines**.
+
+| Evaluation scope | Observations | MAE (cycles) | RMSE (cycles) | R² |
+|---|---:|---:|---:|---:|
+| Final observed cycle per official test engine | 100 | 19.40 | 26.08 | 0.6063 |
+| All eligible official-test cycles | 11,196 | 31.51 | 41.75 | 0.4436 |
+
+These are different evaluation scopes. The endpoint benchmark uses one
+observation per engine; the all-cycle evaluation includes each eligible
+cycle and gives longer histories more observations.
+
+![Model Performance view displaying endpoint MAE 19.40 cycles, RMSE 26.08 cycles, and an actual-versus-predicted RUL curve for the selected best engine.](assets/model-performance.png)
+
+The curve illustrates the selected **best engine** across its evaluated
+history. It is not an aggregate curve or a representative-error claim for
+all 100 engines. The headline metrics summarize the endpoint benchmark.
+
+## Architecture
+
+```mermaid
+flowchart TD
+    D["NASA C-MAPSS FD001 files"] --> R["MinIO Raw: parsed Parquet"]
+    R --> S["Silver: validated engine histories"]
+    S --> G["Gold: engineered features"]
+    S -->|"Complete engine histories"| B["Batch prediction client"]
+    G -. "Feature validation" .-> B
+    B <-->|"HTTP: histories, RUL and SHAP"| API["FastAPI prediction service"]
+    B --> P["MinIO: fleet snapshots and monitoring"]
+    P --> UI["Streamlit dashboard"]
+    UI <-->|"Interactive predictions"| API
+
+    subgraph M["Separate model development and export"]
+        T["Notebook training and evaluation"] --> ML["MLflow tracking and registry"]
+        ML --> E["Exported model bundle"]
+    end
+    G --> T
+    E --> API
+
+    A["Airflow: data, prediction and monitoring workflow"] -. "Orchestrates" .-> R
+    A -. "Orchestrates" .-> G
+    A -. "Orchestrates" .-> B
+    A -. "Orchestrates" .-> P
+```
+
+Airflow runs data preparation, validation, API-based batch inference,
+monitoring, and dashboard publication. Training, model registration, and
+export are separate steps; the DAG does not automatically retrain or
+promote models. FastAPI computes inference features from complete engine
+histories and loads the exported model once at startup. Docker Compose
+coordinates the local services.
+
+See [the project contract](docs/project_contract.md) for the full prediction
+interface, evaluation rules, architecture, and limitations. The project uses
+simulated benchmark data and is intended for education and portfolio use.
 
 ## Repository layout
 
