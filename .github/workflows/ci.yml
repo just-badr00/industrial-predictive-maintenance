@@ -26,8 +26,7 @@ jobs:
         run: python -m pip install -r requirements-test.txt
 
       - name: Check Python code
-        run: python -m ruff check --select F821,F823 src tests dashboard airflow/dags
-
+        run: python -m ruff check --select F821,F823 src tests dashboard airflow/dags mlflow
       - name: Run tests
         run: python -m pytest tests -q
 
@@ -45,3 +44,14 @@ jobs:
 
       - name: Build API image
         run: docker build -f api/Dockerfile -t maintenance-api-ci .
+
+      - name: Build Streamlit image
+        run: docker build -t maintenance-dashboard-ci ./dashboard
+
+      - name: Build MLflow image
+        run: docker build -t maintenance-mlflow-ci ./mlflow
+
+      - name: Validate platform configuration
+        run: |
+          cp .env.example .env
+          docker compose config --quiet

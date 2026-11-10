@@ -144,8 +144,18 @@ def read_model_monitoring_report(s3_client, bucket_name, run_id, load_date):
     report_dict = json.loads(response_text)
     return report_dict
 
-api_url = "http://127.0.0.1:8001"
-project_root = Path(r"C:\Users\Badr\Desktop\Python_3.0")
+# NEW: Allow Docker to supply settings; keep the Windows defaults.
+api_url = os.environ.get(
+    "PREDICTION_API_URL",
+    "http://127.0.0.1:8001",
+)
+
+project_root = Path(
+    os.environ.get(
+        "PROJECT_ROOT",
+        r"C:\Users\Badr\Desktop\Python_3.0",
+    )
+)
 
 # Initialize these values only once for this browser session.
 if "health_data" not in st.session_state:
@@ -599,15 +609,23 @@ if page == "Model Performance":
 
     st.subheader("Historical MLflow evaluation")
 
-    mlflow_database = (
-        project_root / "mlflow.db"
-    ).resolve().as_posix()
+    # NEW: Use an MLflow server when its address is supplied.
+    tracking_uri = os.environ.get("MLFLOW_TRACKING_URI")
 
-    if not Path(mlflow_database).is_file():
-        st.error("The MLflow database file is missing. Check that mlflow.db exists in the project root.")
-        st.stop()
+    # Otherwise, keep the existing Windows database connection.
+    if tracking_uri is None:
+        mlflow_database = (
+            project_root / "mlflow.db"
+        ).resolve().as_posix()
 
-    tracking_uri = f"sqlite:///{mlflow_database}"
+        if not Path(mlflow_database).is_file():
+            st.error(
+                "The MLflow database file is missing. "
+                "Check that mlflow.db exists in the project root."
+            )
+            st.stop()
+
+        tracking_uri = f"sqlite:///{mlflow_database}"
 
     mlflow.set_tracking_uri(tracking_uri)
     mlflow.set_registry_uri(tracking_uri)
